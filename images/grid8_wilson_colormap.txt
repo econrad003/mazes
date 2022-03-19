@@ -1,0 +1,17 @@
+#########################################################################
+# run of test_grid8 - distance colormap of 8-connected rectangular grid #
+# 17 March 2022 at 15:45 EDT                                            #
+#########################################################################
+$ python3 test_grid8.py
+
+Test 1) Wilson's algorithm on an 8-connected rectangular grid
+Maze characteristic:
+       number of nodes:         v = 180
+       number of edges:         e = 179
+  number of components:         k = 1
+  Euler characteristic: v - e - k = 0
+A perfect maze!
+farthest from lower left: (2, 6) distance=41
+farthest from Cell(2,6): (2, 0) distance=43
+farthest from Cell(2,0): (2, 6) distance=43
+
