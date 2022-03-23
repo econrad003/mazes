@@ -6,7 +6,7 @@ DESCRIPTION
     Implemented here are a number of support classes:
 
                 queuing classes
-        Unqueue - a generalize queuing class
+        Unqueue - a general queuing class
             Queue - a FIFO (first in, first out) queuing class
             Stack - a LIFO (last in, first out) queuing class
             Heap - a BIFO (best in, first out) priority queue

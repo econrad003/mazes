@@ -117,14 +117,24 @@ class MazeSketcher(object):
     def draw_ellipse(self, diagonal, outline="black", fill="white"):
         """draw an ellipse with axes parallel to the coordinate axes
 
-        PIL documentation requires that the bounding box diagonal run
-        roughly from northeast to southwest.
+        The PIL ellipse method only draws ellipses with axes parallel
+        to coordinate axes.
         """
         (x1, y1), (x2, y2) = diagonal       # unpack endpoints
         u1, v1 = self._transform(x1, y1)
         u2, v2 = self._transform(x2, y2)
         xy = ((u1, v1), (u2, v2))
         self.canvas.ellipse(xy, fill=fill, outline=outline, width=1)
+
+    def draw_circle(self, center, r, outline="black", fill="white"):
+        """draw a circle with axes parallel to the coordinate axes
+
+        PIL seems to prefer piecharts and ellipses with axes parallel
+        to the coordinate axes.  When in Rome...
+        """
+        (x, y) = center
+        diagonal = ((x-r, y+r), (x+r, y-r))
+        self.draw_ellipse(diagonal, outline=outline, fill=fill)
 
     def draw_text(self, location, text, fontname="arial", fontsize=16):
         """draw a collection of line segments"""
