@@ -36,6 +36,10 @@ LICENSE
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see
         <https://www.gnu.org/licenses/>.
+
+MODIFICATIONS
+
+    28 March 2022 - EC - added edge colors to grid
 """
 
 from math import floor
@@ -45,6 +49,7 @@ class Grid(object):
     """Grid - implementation of a grid base class"""
 
     WALLBUILDER = 'wall_builder'
+    DEFAULT_COLOR = 'white'
 
         # initialization
 
@@ -75,6 +80,7 @@ class Grid(object):
         self._walls = {}
         self._cells = {}
         self._trace = []
+        self._edge_colors = {}
 
         self._args = args
         self._kwargs = kwargs
@@ -133,6 +139,17 @@ class Grid(object):
         indices = self.indices
         for index in indices:
             yield self[index]
+
+    def set_edge_color(self, cell1, cell2, color):
+        """set the color to be used for an edge"""
+        edge = frozenset([cell1, cell2])
+        self._edge_colors[edge] = color
+
+    def edge_color(self, cell1, cell2):
+        """set the color to be used for an edge"""
+        edge = frozenset([cell1, cell2])
+        color = self._edge_colors.get(edge)
+        return color if color else self.DEFAULT_COLOR
 
     def clone(self, warning=True):
         """make a copy of the grid
